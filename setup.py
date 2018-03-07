@@ -15,10 +15,5 @@ setup(
     author="Anton",
     author_email="afnguyen85@gmail.com",
     packages=find_packages(),
-    entry_points={
-        'console_scripts': [
-            'pullsbury = pullsbury.cli:main',
-        ],
-    },
     install_requires=requirements.readlines(),
 )

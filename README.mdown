@@ -76,36 +76,6 @@ export PULLSBURY_SETTINGS='/path/to/settings.py'
 * You can skip setting `PULLSBURY_SETTINGS` if you're running Pullsbury Gitboy from
 a directory containing your `settings.py` file.
 
-## Setting up Repositories
-
-Once you've configured the server processes, it is time to setup some
-repositories to be checked.
-
-### Installing github hooks
-
-Before Pullsbury Gitboy can check pull requests on a repository webhooks will need
-to be installed.  You can install webhooks by running the built-in command line
-tool:
-
-    source env/bin/activate
-    pullsbury register anton myrepository
-
-Or, if you're using Docker:
-
-    docker-compose run web pullsbury register anton myrepository
-
-The above register webhooks for the given user & repository. You can use the
-`--user` and `--password` options to provide the repository admin credentials
-if the user pullsbury runs as does not have admin access to the repository.
-You can also use the cli tool to remove webhooks:
-
-    source env/bin/activate
-    pullsbury unregister anton myrepository
-
-**Warning** The current web server name will be registered with github. Make sure
-it is configured properly before registering hooks, or you'll need to remove
-any registered hooks and start over.
-
 ## Running Pullsbury Gitboy
 
 After setting up configuration you'll need to start up both processes:

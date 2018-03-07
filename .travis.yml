@@ -1,0 +1,20 @@
+language: python
+
+python:
+ - "2.7"
+
+install: "pip install ."
+
+before_script:
+  - cp settings.sample.py settings.py
+
+env:
+  - PULLSBURY_SETTINGS="./settings.py"
+
+script: "nosetests"
+
+sudo: false
+
+notifications:
+  email:
+    on_failure: change

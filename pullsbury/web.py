@@ -19,7 +19,7 @@ EVENT_PROCESSORS = {
 }
 
 
-@app.route("/ping")
+@app.route("/")
 def ping():
     return "pullsbury: %s pong\n" % (version,)
 

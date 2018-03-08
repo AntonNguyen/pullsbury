@@ -1,4 +1,4 @@
-from pullsbury import app
+from pullsbury import web
 from mock import patch
 from nose.tools import eq_
 from unittest import TestCase
@@ -30,8 +30,8 @@ test_data = {
 class AppTest(TestCase):
 
     def setUp(self):
-        self.app = app.app.test_client()
+        self.app = web.app.test_client()
 
     def test_ping(self):
         res = self.app.get('/ping')
-        eq_("pullsbury: %s pong\n" % (app.version,), res.data)
+        eq_("pullsbury: %s pong\n" % (web.version,), res.data)

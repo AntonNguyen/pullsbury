@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 PACKAGE_NAME = "pullsbury"
-VERSION = "0.3.0"
+VERSION = "0.0.1"
 
 requirements = open('./requirements.txt', 'r')
 

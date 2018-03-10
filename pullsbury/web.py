@@ -28,14 +28,21 @@ def ping():
 def notify():
     try:
         event_type = request.headers.get('X-Github-Event')
-        event = json.load(request.data)
+        event = request.json
         action = event.get('action')
-
+    except Exception as e:
+        log.error("Got an invalid JSON body. '%s'", e)
+        return Response(status=403,
+                        response="You must provide a valid JSON body")
+    try:
         processor = u"{}.{}".format(event_type, action)
         if processor in EVENT_PROCESSORS:
-            handler = EVENT_PROCESSORS[processor](event)
-            handler.send_notification()
+            handlers = EVENT_PROCESSORS[processor]
+            for handler in handlers:
+                handler = handler(event)
+                handler.send_notification()
     except Exception:
-        log.exception(u"Error handling event: {}".format(request.data))
+        log.exception(u"Error processing event: {}".format(request.data))
+        return Response(status=500)
 
-    return Response(200)
+    return Response(status=200)

@@ -27,11 +27,11 @@ test_data = {
 }
 
 
-class AppTest(TestCase):
+class WebTest(TestCase):
 
     def setUp(self):
         self.app = web.app.test_client()
 
     def test_ping(self):
-        res = self.app.get('/ping')
+        res = self.app.get('/')
         eq_("pullsbury: %s pong\n" % (web.version,), res.data)

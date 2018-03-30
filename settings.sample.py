@@ -1,5 +1,5 @@
 import os
-
+import json
 
 def env(key, default, cast=str):
     return cast(os.environ.get(key, default))
@@ -46,3 +46,34 @@ GITHUB_OAUTH_TOKEN = env('GITHUB_OAUTH_TOKEN', None)
 # This is useful when you have github:enterprise on an internal
 # network with self-signed certificates.
 SSL_CA_BUNDLE = None
+
+# Slack settings
+SLACK_HOOK_URL = env('SLACK_HOOK_URL', '')
+SLACK_AUTH_TOKEN = env('SLACK_AUTH_TOKEN', '')
+SLACK_ICON = env('SLACK_ICON', 'https://i.imgur.com/oEL0h26.jpg')
+SLACK_EMOJIS = env('SLACK_EMOJIS', json.dumps([
+    "exclamation",
+    "heart",
+    "icecream",
+    "joy_cat",
+    "octocat",
+    "rainbow",
+    "smile",
+    "snowflake",
+    "snowman",
+    "sparkles",
+    "squirrel",
+    "tada",
+]))
+
+
+# Teams. Expected Format:
+#
+# {
+#     "Team Slack Channel": {
+#         "Github username": {
+#             "slack": "Slack username"
+#         }
+#     }
+# }
+TEAMS = env('TEAMS', json.dumps({}))

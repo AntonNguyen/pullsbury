@@ -1,3 +1,7 @@
+import logging
+log = logging.getLogger(__name__)
+
+
 class Event(object):
     def __init__(self, request):
         try:
@@ -9,5 +13,5 @@ class Event(object):
             self.url = self.pull_request.get('html_url', '')
             self.author = self.pull_request.get('user', {}).get('login', '')
         except Exception as e:
-            log.error("Got an invalid JSON body. '%s'", e)
+            log.error("Error processing event. '%s'", e)
             raise Exception()

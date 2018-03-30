@@ -32,8 +32,8 @@ def test_load_config_handles_slack_emojis():
 def test_load_config_handles_teams():
     expected_teams = {
         "Channel": {
-            "Github Username": {
-                "slack": "Slack username"
+            "github-username": {
+                "slack": "slack-username"
             }
         }
     }

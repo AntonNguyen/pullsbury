@@ -33,9 +33,12 @@ class SlackHandler(object):
             message = u"{} *A wild PR from @{} appeared!* {}\n_{}_: {}".format(
                 emoji, channel['slack'], emoji, self.event.title, self.event.url
             )
+            self.send_slack_message(channel['name'], message)
+
+    def send_slack_message(self, channel, message):
             response = self.slack.api_call(
                 "chat.postMessage",
-                channel="#{}".format(channel['name']),
+                channel="#{}".format(channel),
                 text=message,
                 username="Pullsbury Gitboy",
                 icon_url=self.slack_icon,
@@ -64,6 +67,9 @@ class SlackHandler(object):
         return True
 
     def get_emoji(self, author):
+        if not len(self.emojis):
+            return ":heart:"
+
         name_index = len(author)
         for character in author:
             name_index = name_index + ord(character)

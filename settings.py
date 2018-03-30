@@ -48,7 +48,6 @@ GITHUB_OAUTH_TOKEN = env('GITHUB_OAUTH_TOKEN', None)
 SSL_CA_BUNDLE = None
 
 # Slack settings
-SLACK_HOOK_URL = env('SLACK_HOOK_URL', '')
 SLACK_AUTH_TOKEN = env('SLACK_AUTH_TOKEN', '')
 SLACK_ICON = env('SLACK_ICON', 'https://i.imgur.com/oEL0h26.jpg')
 SLACK_EMOJIS = env('SLACK_EMOJIS', json.dumps([
@@ -78,8 +77,8 @@ SLACK_EMOJIS = env('SLACK_EMOJIS', json.dumps([
 # }
 TEAMS = env('TEAMS', json.dumps({
     "Channel": {
-        "Github Username": {
-            "slack": "Slack username"
+        "github-username": {
+            "slack": "slack-username"
         }
     }
 }))

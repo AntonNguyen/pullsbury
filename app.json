@@ -1,0 +1,5 @@
+{
+    "name": "pullsbury-gitboy",
+    "description": "Utilizes the github organization webhook, in order to notify your team mates on slack, whenever a team mate opens up a pull request.",
+    "repository": "https://github.com/antonnguyen/pullsbury"
+}

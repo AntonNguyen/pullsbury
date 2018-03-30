@@ -4,6 +4,7 @@ import pkg_resources
 
 from flask import Flask, request, Response
 from pullsbury.config import load_config
+from pullsbury.event import Event
 from pullsbury.github import get_client
 from pullsbury.handlers.slack import SlackHandler
 
@@ -18,7 +19,6 @@ EVENT_PROCESSORS = {
     'pull_request.opened': [SlackHandler]
 }
 
-
 @app.route("/")
 def ping():
     return "pullsbury: %s pong\n" % (version,)
@@ -27,22 +27,15 @@ def ping():
 @app.route("/notify", methods=["POST"])
 def notify():
     try:
-        event_type = request.headers.get('X-Github-Event')
-        event = request.json
-        action = event.get('action')
-    except Exception as e:
-        log.error("Got an invalid JSON body. '%s'", e)
-        return Response(status=403,
-                        response="You must provide a valid JSON body")
-    try:
-        processor = u"{}.{}".format(event_type, action)
+        event = Event(request)
+        processor = u"{}.{}".format(event.type, event.action)
         if processor in EVENT_PROCESSORS:
             handlers = EVENT_PROCESSORS[processor]
             for handler in handlers:
-                handler = handler(event)
-                handler.send_notification()
+                handler = handler(event, config)
+                handler.send_notifications()
     except Exception:
-        log.exception(u"Error processing event: {}".format(request.data))
+        log.exception("Unable to process webhook")
         return Response(status=500)
 
     return Response(status=200)

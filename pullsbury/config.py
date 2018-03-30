@@ -1,4 +1,5 @@
 import os
+import json
 import logging.config
 
 from flask.config import Config
@@ -30,4 +31,15 @@ def load_config():
     if config.get('SSL_CA_BUNDLE'):
         os.environ['REQUESTS_CA_BUNDLE'] = config.get('SSL_CA_BUNDLE')
 
+    json_values = [
+        'TEAMS', 'SLACK_EMOJIS'
+    ]
+
+    for value in json_values:
+        if value in config:
+            config.update({
+                value: json.loads(config.get(value, ''))
+            })
+
     return config
+

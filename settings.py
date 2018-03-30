@@ -76,4 +76,10 @@ SLACK_EMOJIS = env('SLACK_EMOJIS', json.dumps([
 #         }
 #     }
 # }
-TEAMS = env('TEAMS', json.dumps({}))
+TEAMS = env('TEAMS', json.dumps({
+    "Channel": {
+        "Github Username": {
+            "slack": "Slack username"
+        }
+    }
+}))

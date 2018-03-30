@@ -104,8 +104,8 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-# Don't let people commit their settings files
-settings.py
-
 # Editors
 .vscode/
+
+# OS stuff
+.DS_Store

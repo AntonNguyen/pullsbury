@@ -1,7 +1,5 @@
 from slackclient import SlackClient
-
 import logging
-import json
 log = logging.getLogger(__name__)
 
 
@@ -9,8 +7,8 @@ class SlackHandler(object):
     def __init__(self, event, config):
         self.event = event
         self.slack = SlackClient(config.get('SLACK_AUTH_TOKEN'))
-        self.channels_to_notify = self.parse_teams(json.loads(config.get('TEAMS')), event.author)
-        self.emojis = json.loads(config.get('SLACK_EMOJIS'))
+        self.channels_to_notify = self.parse_teams(config.get('TEAMS'), event.author)
+        self.emojis = config.get('SLACK_EMOJIS')
         self.slack_icon = config.get('SLACK_ICON')
 
     def parse_teams(self, teams, author):

@@ -5,9 +5,6 @@ python:
 
 install: "pip install ."
 
-before_script:
-  - cp settings.sample.py settings.py
-
 env:
   - PULLSBURY_SETTINGS="./settings.py"
 

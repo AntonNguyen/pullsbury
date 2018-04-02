@@ -1,8 +1,4 @@
-broker:
-  image: rabbitmq:3-management
-  ports:
-    - "15672:15672"
-image:
+mage:
   build: .
 web:
   image: pullsbury_image
@@ -11,10 +7,3 @@ web:
     PULLSBURY_GUNICORN_BIND: '0.0.0.0:5000'
   ports:
    - "5000:5000"
-  links:
-   - "broker:broker"
-worker:
-  image: pullsbury_image
-  command: celery -A pullsbury.tasks worker
-  links:
-   - "broker:broker"

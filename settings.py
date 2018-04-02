@@ -13,12 +13,6 @@ bind = env('PULLSBURY_GUNICORN_BIND', '127.0.0.1:5000')
 debug = env('PULLSBURY_GUNICORN_DEBUG', True, bool)
 loglevel = env('PULLSBURY_GUNICORN_LOGLEVEL', 'debug')
 
-# Basic flask config
-DEBUG = env('PULLSBURY_FLASK_DEBUG', True, bool)
-TESTING = env('PULLSBURY_TESTING', True, bool)
-SERVER_NAME = env('PULLSBURY_SERVER_NAME', '127.0.0.1:5000')
-
-
 # Config file for logging
 LOGGING_CONFIG = './logging.ini'
 

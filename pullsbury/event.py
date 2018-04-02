@@ -5,9 +5,12 @@ log = logging.getLogger(__name__)
 class Event(object):
     def __init__(self, request):
         try:
-            self.type = request.headers.get('X-Github-Event')
+            event_type = request.headers.get('X-Github-Event')
+            self.type = event_type if event_type else ''
             self.event = request.json
-            self.action = self.event.get('action').lower()
+
+            action = self.event.get('action')
+            self.action = action.lower() if action else ''
             self.pull_request = self.event.get('pull_request', {})
             self.title = self.pull_request.get('title', '')
             self.url = self.pull_request.get('html_url', '')

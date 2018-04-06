@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "8262b9fe6c7fef91c64c3335cced97d87c59d8145fb10cb3f0df2db2ad3254c5"
+            "sha256": "3e4f3a7db8fb66144d32254317eccad93e49c243ce1cfe47ae9716884528095f"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -56,6 +56,14 @@
             ],
             "index": "pypi",
             "version": "==19.7.1"
+        },
+        "httpretty": {
+            "hashes": [
+                "sha256:83c176bbac9d68a45a5cca54f2d5be7e6b16a063adf6f334e7fd0eee272e976e",
+                "sha256:cf51d23dae21b4da2c083a6efa381f5ab967d61095e45de1123f358812024237"
+            ],
+            "index": "pypi",
+            "version": "==0.8.14"
         },
         "idna": {
             "hashes": [
@@ -148,14 +156,6 @@
             ],
             "markers": "python_version < '3.3'",
             "version": "==1.0.2"
-        },
-        "httpretty": {
-            "hashes": [
-                "sha256:83c176bbac9d68a45a5cca54f2d5be7e6b16a063adf6f334e7fd0eee272e976e",
-                "sha256:cf51d23dae21b4da2c083a6efa381f5ab967d61095e45de1123f358812024237"
-            ],
-            "index": "pypi",
-            "version": "==0.8.14"
         },
         "mock": {
             "hashes": [

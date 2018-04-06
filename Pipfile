@@ -14,7 +14,7 @@ PyGithub = "*"
 "pep8" = "*"
 nose = "*"
 mock = "*"
-httpretty = "*"
+HTTPretty = "*"
 
 [requires]
 python_version = "2.7"

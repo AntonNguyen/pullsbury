@@ -20,8 +20,8 @@ LOGGING_CONFIG = './logging.ini'
 #################################
 
 # Use GITHUB_URL when working with github:e
-# When working with github:e don't forget to add the /api/v3/ path
-GITHUB_URL = env('GITHUB_URL', 'https://api.github.com/')
+# When working with github:e don't forget to add the /api/v3 path
+GITHUB_URL = env('GITHUB_URL', 'http://api.github.com')
 
 # Github username + password
 # This is the user that pullsbury will use

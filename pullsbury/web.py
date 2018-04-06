@@ -5,7 +5,6 @@ import pkg_resources
 from flask import Flask, request, Response
 from pullsbury.config import load_config
 from pullsbury.event import Event
-from pullsbury.github import get_client
 from pullsbury.handlers.slack import SlackHandler
 
 config = load_config()

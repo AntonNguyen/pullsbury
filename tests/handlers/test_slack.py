@@ -129,7 +129,7 @@ class TestSlackHandler(TestCase):
         handler = SlackHandler(event, self.config)
         handler.send_notifications()
 
-        expected_message = u":snowflake: *A wild PR from @slack-username appeared!* :snowflake:\n_title_: https://github.example.com/api/v3/repos/dev/emojis/pulls/2964"
+        expected_message = u":snowflake: *A wild PR from @slack-username appeared!* :snowflake:\n_title_: http://api.github.com/repos/dev/emojis/pulls/2964"
         ok_(send_slack_message.called)
         send_slack_message.assert_called_with('Channel', expected_message)
 
@@ -138,7 +138,7 @@ class TestableEvent(Event):
     def __init__(self,
                  action='opened',
                  title='title',
-                 url='https://github.example.com/api/v3/repos/dev/emojis/pulls/2964',
+                 url='http://api.github.com/repos/dev/emojis/pulls/2964',
                  author='github-username',
                  pull_request={'foo': 'bar'}):
 

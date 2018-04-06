@@ -11,5 +11,10 @@ setup(
     Whenever a pull request has been put up by a team member
     """,
     author="Anton",
-    author_email="afnguyen85@gmail.com"
+    author_email="afnguyen85@gmail.com",
+    entry_points={
+        'console_scripts': [
+            'pullsbury = pullsbury.cli:main',
+        ],
+    },
 )

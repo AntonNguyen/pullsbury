@@ -15,7 +15,7 @@ class TestEvent(TestCase):
         eq_(event.type, 'opened')
         eq_(event.action, 'opened')
         eq_(event.title, 'Add more emojis')
-        eq_(event.url, 'https://github.example.com/dev/emojis/pull/2964')
+        eq_(event.url, 'https://github.example.com/org_name/emojis/pull/2964')
         eq_(event.author, 'github-username')
 
     def test_non_pull_request_event_parse(self):

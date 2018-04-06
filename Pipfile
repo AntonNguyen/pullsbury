@@ -5,13 +5,14 @@ name = "pypi"
 
 [packages]
 "pep8" = "*"
-flask = "*"
+Flask = "*"
 gunicorn = "*"
-"pygithub3-intellisense" = "*"
 slackclient = "*"
 nose = "*"
 mock = "*"
 "e1839a8" = {path = ".", editable = true}
+PyGithub = "*"
+httpretty = "*"
 
 [dev-packages]
 

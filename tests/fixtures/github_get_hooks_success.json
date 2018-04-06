@@ -1,0 +1,38 @@
+[
+    {
+        "type": "Organization",
+        "id": 910,
+        "name": "web",
+        "active": true,
+        "events": [
+            "pull_request"
+        ],
+        "config": {
+            "content_type": "json",
+            "insecure_ssl": "0",
+            "url": "http://mysite.example.com"
+        },
+        "updated_at": "2016-07-14T16:43:08Z",
+        "created_at": "2016-04-29T20:44:15Z",
+        "url": "http://api.github.com/orgs/org_name/hooks/910",
+        "ping_url": "http://api.github.com/orgs/org_name/hooks/910/pings"
+    },
+    {
+        "type": "Organization",
+        "id": 1374,
+        "name": "web",
+        "active": true,
+        "events": [
+            "pull_request"
+        ],
+        "config": {
+            "content_type": "json",
+            "insecure_ssl": "0",
+            "url": "https://myothesite.example.com"
+        },
+        "updated_at": "2018-04-02T13:17:39Z",
+        "created_at": "2018-03-30T17:37:29Z",
+        "url": "http://api.github.com/orgs/org_name/hooks/1374",
+        "ping_url": "http://api.github.com/orgs/org_name/hooks/1374/pings"
+    }
+]

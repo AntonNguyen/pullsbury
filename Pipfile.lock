@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "7c644a8cc362a7f8bcefeaeb7be8ea46a0bc463aa8dff9b8ea6166097f97c66d"
+            "sha256": "ea10c467b7237d086025ab4b24eceef8f82b21bb0bc043601f99380c57addec3"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -65,6 +65,14 @@
             "index": "pypi",
             "version": "==19.7.1"
         },
+        "httpretty": {
+            "hashes": [
+                "sha256:83c176bbac9d68a45a5cca54f2d5be7e6b16a063adf6f334e7fd0eee272e976e",
+                "sha256:cf51d23dae21b4da2c083a6efa381f5ab967d61095e45de1123f358812024237"
+            ],
+            "index": "pypi",
+            "version": "==0.8.14"
+        },
         "idna": {
             "hashes": [
                 "sha256:2c6a5de3089009e3da7c5dde64a141dbc8551d5b7f6cf4ed7c2568d0cc520a8f",
@@ -110,10 +118,10 @@
         },
         "pbr": {
             "hashes": [
-                "sha256:8b9a7c3704657cb0831b3ded0a6b61377947c8235b76649bb7de4bfe2e6cfa56",
-                "sha256:cf66675e22ae91a4f20e4b8354f117d3e3d1de651513051d109cc39645fb3672"
+                "sha256:56b7a8ba7d64bf6135a9dfefb85a80d95924b3fde5ed6343a1a1d464a040dae3",
+                "sha256:de75cf1d510542c746beeff66b52241eb12c8f95f2ef846ee50ed5d72392caa4"
             ],
-            "version": "==4.0.0"
+            "version": "==4.0.1"
         },
         "pep8": {
             "hashes": [
@@ -123,12 +131,19 @@
             "index": "pypi",
             "version": "==1.7.1"
         },
-        "pygithub3-intellisense": {
+        "pygithub": {
             "hashes": [
-                "sha256:00dfd393ed2e1fb277f05f7f10fd3c1eed9603f2b6fb7233792352c54fca9561"
+                "sha256:1ed08f775ec5067bc8452b72bde2dbb95cf4e52ff2bd50cc32c69c91ffad9272"
             ],
             "index": "pypi",
-            "version": "==0.5"
+            "version": "==1.38"
+        },
+        "pyjwt": {
+            "hashes": [
+                "sha256:bca523ef95586d3a8a5be2da766fe6f82754acba27689c984e28e77a12174593",
+                "sha256:dacba5786fe3bf1a0ae8673874e29f9ac497860955c501289c63b15d3daae63a"
+            ],
+            "version": "==1.6.1"
         },
         "requests": {
             "hashes": [

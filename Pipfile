@@ -4,17 +4,17 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-"pep8" = "*"
 Flask = "*"
 gunicorn = "*"
 slackclient = "*"
-nose = "*"
-mock = "*"
 "e1839a8" = {path = ".", editable = true}
 PyGithub = "*"
-httpretty = "*"
 
 [dev-packages]
+"pep8" = "*"
+nose = "*"
+mock = "*"
+httpretty = "*"
 
 [requires]
 python_version = "2.7"

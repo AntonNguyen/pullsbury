@@ -10,6 +10,7 @@ class SlackHandler(object):
         self.channels_to_notify = self.parse_teams(config.get('TEAMS'), event.author)
         self.emojis = config.get('SLACK_EMOJIS')
         self.slack_icon = config.get('SLACK_ICON')
+        self.repo_blacklist = config.get('REPO_BLACKLIST')
 
     def parse_teams(self, teams, author):
         channels = []
@@ -56,6 +57,9 @@ class SlackHandler(object):
         ]
 
         if self.event.action not in valid_actions:
+            return False
+
+        if self.event.repository in self.repo_blacklist:
             return False
 
         if not self.event.pull_request:

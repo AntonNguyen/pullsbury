@@ -41,3 +41,14 @@ def test_load_config_handles_teams():
     res = load_config()
     actual_teams = res.get('TEAMS')
     eq_(actual_teams, expected_teams)
+
+def test_load_config_repo_blacklist():
+    expected_repos = [
+        "org_name/blacklisted"
+    ]
+
+    res = load_config()
+    actual_repos = res.get('REPO_BLACKLIST')
+
+    ok_(len(actual_repos) > 0)
+    eq_(actual_repos, expected_repos)

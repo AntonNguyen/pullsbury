@@ -56,6 +56,19 @@ class TestSlackHandler(TestCase):
         handler = SlackHandler(event, self.config)
         eq_(handler.get_emoji('anton'), ':heart:')
 
+    def test_get_emoji_returns_correct_custom_emoji(self):
+        event = TestableEvent()
+        self.config.update({
+            'CUSTOM_EMOJI_MAPPING': {
+                'batman': 'joker'
+            }
+        })
+        handler = SlackHandler(event, self.config)
+        eq_(handler.get_emoji('batman'), ':joker:')
+        # non custom emojis return the default response
+        eq_(handler.get_emoji('anton'), ':sparkles:')
+        eq_(handler.get_emoji('nguyen'), ':snowman:')
+
     def test_parse_teams_returns_empty_list_if_no_teams_provided(self):
         event = TestableEvent()
         handler = SlackHandler(event, self.config)

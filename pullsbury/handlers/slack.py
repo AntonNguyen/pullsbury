@@ -11,6 +11,7 @@ class SlackHandler(object):
         self.emojis = config.get('SLACK_EMOJIS')
         self.slack_icon = config.get('SLACK_ICON')
         self.repo_blacklist = config.get('REPO_BLACKLIST')
+        self.custom_emoji_mapping = config.get('CUSTOM_EMOJI_MAPPING', {})
 
     def parse_teams(self, teams, author):
         channels = []
@@ -73,6 +74,9 @@ class SlackHandler(object):
     def get_emoji(self, author):
         if not len(self.emojis):
             return ":heart:"
+
+        if self.custom_emoji_mapping.get(author):
+            return ":{}:".format(self.custom_emoji_mapping[author])
 
         name_index = len(author)
         for character in author:

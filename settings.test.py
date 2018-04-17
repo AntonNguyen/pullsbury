@@ -68,7 +68,6 @@ SAD_SLACK_EMOJIS = env('SAD_SLACK_EMOJIS', json.dumps([
     "crying_cat_face",
 ]))
 
-
 # Teams. Expected Format:
 #
 # {

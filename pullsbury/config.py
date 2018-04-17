@@ -7,14 +7,16 @@ from ConfigParser import ConfigParser
 from StringIO import StringIO
 
 
-def load_config():
+def load_config(path=''):
     """
     Loads the config files merging the defaults
     with the file defined in environ.PULLSBURY_SETTINGS if it exists.
     """
     config = Config(os.getcwd())
 
-    if 'PULLSBURY_SETTINGS' in os.environ:
+    if path:
+        config.from_pyfile(path)
+    elif 'PULLSBURY_SETTINGS' in os.environ:
         config.from_envvar('PULLSBURY_SETTINGS')
     elif os.path.exists(os.path.join(os.getcwd(), 'settings.py')):
         config.from_pyfile('settings.py')
@@ -23,6 +25,7 @@ def load_config():
                "either create ./settings.py or set PULLSBURY_SETTINGS "
                "in your environment before running.")
         raise ImportError(msg)
+
     if config.get('LOGGING_CONFIG'):
         logging.config.fileConfig(
             config.get('LOGGING_CONFIG'),
@@ -32,7 +35,7 @@ def load_config():
         os.environ['REQUESTS_CA_BUNDLE'] = config.get('SSL_CA_BUNDLE')
 
     json_values = [
-        'TEAMS', 'SLACK_EMOJIS', 'REPO_BLACKLIST'
+        'TEAMS', 'HAPPY_SLACK_EMOJIS', 'REPO_BLACKLIST'
     ]
 
     for value in json_values:

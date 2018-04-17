@@ -97,7 +97,7 @@ class TestGithubHandler(TestCase):
         )
 
     def get_github_handler(self, custom_config=None):
-        config = load_config()
+        config = load_config(path='settings.test.py')
         if custom_config:
             config.update({
                 'GITHUB_OAUTH_TOKEN': 'oauth-token'

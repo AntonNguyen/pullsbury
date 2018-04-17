@@ -8,7 +8,8 @@ class SlackHandler(object):
         self.event = event
         self.slack = SlackClient(config.get('SLACK_AUTH_TOKEN'))
         self.channels_to_notify = self.parse_teams(config.get('TEAMS'), event.author)
-        self.emojis = config.get('SLACK_EMOJIS')
+        self.happy_emojis = config.get('HAPPY_SLACK_EMOJIS')
+        self.sad_emojis = config.get('SAD_SLACK_EMOJIS')
         self.slack_icon = config.get('SLACK_ICON')
         self.repo_blacklist = config.get('REPO_BLACKLIST')
 
@@ -29,7 +30,7 @@ class SlackHandler(object):
         if not self.should_handle():
             return
 
-        emoji = self.get_emoji(self.event.author)
+        emoji = self.get_happy_emoji(self.event.author)
         for channel in self.channels_to_notify:
             message = u"{} *A wild PR from @{} appeared!* {}\n_{}_: {}".format(
                 emoji, channel['slack'], emoji, self.event.title, self.event.url
@@ -70,13 +71,13 @@ class SlackHandler(object):
 
         return True
 
-    def get_emoji(self, author):
-        if not len(self.emojis):
+    def get_happy_emoji(self, author):
+        if not len(self.happy_emojis):
             return ":heart:"
 
         name_index = len(author)
         for character in author:
             name_index = name_index + ord(character)
-        emoji_index = name_index % len(self.emojis)
+        emoji_index = name_index % len(self.happy_emojis)
 
-        return ":{}:".format(self.emojis[emoji_index])
+        return ":{}:".format(self.happy_emojis[emoji_index])

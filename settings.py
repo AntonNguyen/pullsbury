@@ -59,7 +59,9 @@ SLACK_EMOJIS = env('SLACK_EMOJIS', json.dumps([
     "tada",
 ]))
 
-SLACK_CUSTOM_EMOJI_MAPPING = env('SLACK_CUSTOM_EMOJI_MAPPING', json.dumps({}))
+SLACK_CUSTOM_EMOJI_MAPPING = env('SLACK_CUSTOM_EMOJI_MAPPING', json.dumps({
+    "author": "custom_emoji"
+}))
 
 # Teams. Expected Format:
 #

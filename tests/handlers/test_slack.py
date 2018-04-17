@@ -1,8 +1,8 @@
 from tests import load_fixture
 from mock import patch
 from nose.tools import eq_, ok_
-from pullsbury.handlers.slack import SlackHandler
-from pullsbury.event import Event
+from pullsbury.handlers.slack_handler import SlackHandler
+from pullsbury.models.event import Event
 from pullsbury.config import load_config
 from unittest import TestCase
 import json
@@ -145,7 +145,7 @@ class TestSlackHandler(TestCase):
             {'name': 'rocket', 'slack': 'meowth'},
         ])
 
-    @patch('pullsbury.handlers.slack.SlackHandler.send_slack_message')
+    @patch('pullsbury.handlers.slack_handler.SlackHandler.send_slack_message')
     def test_send_notifications(self, send_slack_message):
         event = TestableEvent()
         handler = SlackHandler(event, self.config)

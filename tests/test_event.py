@@ -1,6 +1,6 @@
 from . import load_fixture
 from nose.tools import eq_
-from pullsbury.event import Event
+from pullsbury.models.event import Event
 from unittest import TestCase
 import json
 
@@ -10,7 +10,7 @@ class TestEvent(TestCase):
             headers={
                 'X-Github-Event': 'opened'
             },
-            body=load_fixture('pull_request_opened.json'))
+            body=load_fixture('requests/pull_request_opened.json'))
         event = Event(request)
         eq_(event.type, 'opened')
         eq_(event.action, 'opened')
@@ -20,7 +20,7 @@ class TestEvent(TestCase):
 
     def test_non_pull_request_event_parse(self):
         request = MockRequest(
-            body=load_fixture('non_pull_request_event.json'))
+            body=load_fixture('requests/non_pull_request_event.json'))
         event = Event(request)
         eq_(event.type, '')
         eq_(event.action, '')

@@ -24,7 +24,7 @@ class WebTest(TestCase):
     def test_notify_handles_valid_request(self):
         res = self.app.post('/notify',
                             content_type='application/json',
-                            data=load_fixture('pull_request_opened.json'))
+                            data=load_fixture('requests/pull_request_opened.json'))
         eq_(res.status_code, 200)
         eq_('', res.data)
 
@@ -35,7 +35,7 @@ class WebTest(TestCase):
                             headers={
                                 'X-Github-Event': 'pull_request'
                             },
-                            data=load_fixture('pull_request_opened.json'))
+                            data=load_fixture('requests/pull_request_opened.json'))
 
         eq_(res.status_code, 200)
         eq_('', res.data)
@@ -48,7 +48,7 @@ class WebTest(TestCase):
                             headers={
                                 'X-Github-Event': 'pull_request'
                             },
-                            data=load_fixture('pull_request_edited.json'))
+                            data=load_fixture('requests/pull_request_edited.json'))
 
         eq_(res.status_code, 200)
         eq_('', res.data)

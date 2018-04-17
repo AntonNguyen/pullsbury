@@ -24,7 +24,7 @@ def test_load_config_handles_slack_emojis():
     ]
 
     res = load_config()
-    actual_emojis = res.get('SLACK_EMOJIS')
+    actual_emojis = res.get('HAPPY_SLACK_EMOJIS')
 
     ok_(len(actual_emojis) > 0)
     eq_(actual_emojis, expected_emojis)

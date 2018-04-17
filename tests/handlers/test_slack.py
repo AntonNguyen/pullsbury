@@ -42,19 +42,19 @@ class TestSlackHandler(TestCase):
         handler = SlackHandler(event, self.config)
         ok_(handler.should_handle())
 
-    def test_get_emoji_returns_same_emoji_for_author(self):
+    def test_get_happy_emoji_returns_same_emoji_for_author(self):
         event = TestableEvent()
         handler = SlackHandler(event, self.config)
-        eq_(handler.get_emoji('anton'), ':sparkles:')
-        eq_(handler.get_emoji('nguyen'), ':snowman:')
+        eq_(handler.get_happy_emoji('anton'), ':sparkles:')
+        eq_(handler.get_happy_emoji('nguyen'), ':snowman:')
 
-    def test_get_emoji_returns_emoji_even_if_emoji_list_is_empty(self):
+    def test_get_happy_emoji_returns_emoji_even_if_emoji_list_is_empty(self):
         event = TestableEvent()
         self.config.update({
-            'SLACK_EMOJIS': []
+            'HAPPY_SLACK_EMOJIS': []
         })
         handler = SlackHandler(event, self.config)
-        eq_(handler.get_emoji('anton'), ':heart:')
+        eq_(handler.get_happy_emoji('anton'), ':heart:')
 
     def test_parse_teams_returns_empty_list_if_no_teams_provided(self):
         event = TestableEvent()

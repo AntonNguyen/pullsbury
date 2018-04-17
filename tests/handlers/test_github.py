@@ -31,7 +31,7 @@ class TestGithubHandler(TestCase):
         self.mock_github_auth()
         self.mock_github_create_hook(
             status=422,
-            fixture='github_create_hook_validation_failed.json')
+            fixture='responses/github_create_hook_validation_failed.json')
         github = self.get_github_handler()
         github.register('org_name', 'www.example.com')
 
@@ -57,11 +57,11 @@ class TestGithubHandler(TestCase):
     def test_delete_hook_already_deleted(self):
         self.mock_github_auth()
         self.mock_github_get_hooks()
-        self.mock_github_delete_hook(status=404, fixture='github_delete_hook_not_found.json')
+        self.mock_github_delete_hook(status=404, fixture='responses/github_delete_hook_not_found.json')
         github = self.get_github_handler()
         github.unregister('org_name', 'http://mysite.example.com')
 
-    def mock_github_auth(self, status=200, fixture='github_auth.json'):
+    def mock_github_auth(self, status=200, fixture='responses/github_auth.json'):
         httpretty.register_uri(
             httpretty.GET,
             'http://api.github.com/orgs/org_name',
@@ -69,7 +69,7 @@ class TestGithubHandler(TestCase):
             body=load_fixture(fixture)
         )
 
-    def mock_github_create_hook(self, status=200, fixture='github_create_hook_success.json'):
+    def mock_github_create_hook(self, status=200, fixture='responses/github_create_hook_success.json'):
         httpretty.register_uri(
             httpretty.POST,
             'http://api.github.com/orgs/org_name/hooks',
@@ -82,7 +82,7 @@ class TestGithubHandler(TestCase):
             httpretty.GET,
             'http://api.github.com/orgs/org_name/hooks',
             status=200,
-            body=load_fixture('github_get_hooks_success.json')
+            body=load_fixture('responses/github_get_hooks_success.json')
         )
 
     def mock_github_delete_hook(self, status=200, fixture=None):

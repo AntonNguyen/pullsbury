@@ -32,7 +32,7 @@ def load_config():
         os.environ['REQUESTS_CA_BUNDLE'] = config.get('SSL_CA_BUNDLE')
 
     json_values = [
-        'TEAMS', 'SLACK_EMOJIS', 'REPO_BLACKLIST', 'SLACK_CUSTOM_EMOJI_MAPPING'
+        'TEAMS', 'HAPPY_SLACK_EMOJIS', 'REPO_BLACKLIST', 'SLACK_CUSTOM_EMOJI_MAPPING'
     ]
 
     for value in json_values:

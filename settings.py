@@ -44,7 +44,7 @@ SSL_CA_BUNDLE = None
 # Slack settings
 SLACK_AUTH_TOKEN = env('SLACK_AUTH_TOKEN', '')
 SLACK_ICON = env('SLACK_ICON', 'https://i.imgur.com/oEL0h26.jpg')
-SLACK_EMOJIS = env('SLACK_EMOJIS', json.dumps([
+HAPPY_SLACK_EMOJIS = env('HAPPY_SLACK_EMOJIS', json.dumps([
     "exclamation",
     "heart",
     "icecream",

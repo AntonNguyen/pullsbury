@@ -4,8 +4,8 @@ import pkg_resources
 
 from flask import Flask, request, Response
 from pullsbury.config import load_config
-from pullsbury.event import Event
-from pullsbury.handlers.slack import SlackHandler
+from pullsbury.handlers.slack_handler import SlackHandler
+from pullsbury.models.event import Event
 
 config = load_config()
 app = Flask("pullsbury")

@@ -1,6 +1,6 @@
 from . import load_fixture
 from nose.tools import eq_
-from pullsbury.event import Event
+from pullsbury.models.event import Event
 from unittest import TestCase
 import json
 

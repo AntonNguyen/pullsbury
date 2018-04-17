@@ -67,9 +67,9 @@ share the same configuration file, so configuration is easier to manage and shar
 * Edit the required configuration options, or set the correct environment variables.
 * Set the `PULLSBURY_SETTINGS` environment variable to the path
 of your configuration files. In \*nix system this can be done via:
-
+```
 export PULLSBURY_SETTINGS='/path/to/settings.py'
-
+```
 * You can skip setting `PULLSBURY_SETTINGS` if you're running Pullsbury Gitboy from
 a directory containing your `settings.py` file.
 

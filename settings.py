@@ -76,3 +76,8 @@ TEAMS = env('TEAMS', json.dumps({
         }
     }
 }))
+
+# List of repos to not notify
+REPO_BLACKLIST = env('REPO_BLACKLIST', json.dumps([
+    'org_name/blacklisted'
+]))

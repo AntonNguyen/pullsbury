@@ -29,6 +29,14 @@ class TestSlackHandler(TestCase):
         handler = SlackHandler(event, self.config)
         ok_(not handler.should_handle())
 
+    def test_should_handle_returns_false_if_repo_is_blacklisted(self):
+        event = TestableEvent(repository='org_name/blacklisted')
+        self.config.update({
+            'REPO_BLACKLIST': ['org_name/blacklisted']
+        })
+        handler = SlackHandler(event, self.config)
+        ok_(not handler.should_handle())
+
     def test_should_handle_returns_true(self):
         event = TestableEvent()
         handler = SlackHandler(event, self.config)
@@ -140,10 +148,12 @@ class TestableEvent(Event):
                  title='title',
                  url='http://api.github.com/repos/dev/emojis/pulls/2964',
                  author='github-username',
-                 pull_request={'foo': 'bar'}):
+                 pull_request={'foo': 'bar'},
+                 repository='dev/emojis'):
 
         self.action = action
         self.pull_request = pull_request
         self.title = title
         self.url = url
         self.author = author
+        self.repository = repository

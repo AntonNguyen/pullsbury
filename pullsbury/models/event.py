@@ -10,3 +10,4 @@ class Event(object):
         self.title = self.pull_request.get('title', '')
         self.url = self.pull_request.get('html_url', '')
         self.author = self.pull_request.get('user', {}).get('login', '')
+        self.repository = self.event.get('repository', {}).get('full_name', '')

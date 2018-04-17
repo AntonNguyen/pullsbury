@@ -4,10 +4,10 @@ from nose.tools import eq_, ok_
 
 
 def test_load_config():
-    res = load_config()
+    res = load_config(path='settings.test.py')
     assert res['GITHUB_USER'].endswith, 'Exists and is stringy'
 
-def test_load_config_handles_slack_emojis():
+def test_load_config_handles_happy_slack_emojis():
     expected_emojis = [
         "exclamation",
         "heart",
@@ -23,8 +23,8 @@ def test_load_config_handles_slack_emojis():
         "tada",
     ]
 
-    res = load_config()
-    actual_emojis = res.get('SLACK_EMOJIS')
+    res = load_config(path='settings.test.py')
+    actual_emojis = res.get('HAPPY_SLACK_EMOJIS')
 
     ok_(len(actual_emojis) > 0)
     eq_(actual_emojis, expected_emojis)
@@ -38,7 +38,7 @@ def test_load_config_handles_teams():
         }
     }
 
-    res = load_config()
+    res = load_config(path='settings.test.py')
     actual_teams = res.get('TEAMS')
     eq_(actual_teams, expected_teams)
 

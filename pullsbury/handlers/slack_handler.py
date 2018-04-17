@@ -8,7 +8,7 @@ class SlackHandler(object):
         self.event = event
         self.slack = SlackClient(config.get('SLACK_AUTH_TOKEN'))
         self.channels_to_notify = self.parse_teams(config.get('TEAMS'), event.author)
-        self.emojis = config.get('SLACK_EMOJIS')
+        self.happy_emojis = config.get('HAPPY_SLACK_EMOJIS')
         self.slack_icon = config.get('SLACK_ICON')
         self.repo_blacklist = config.get('REPO_BLACKLIST')
         self.slack_custom_emoji_mapping = config.get('SLACK_CUSTOM_EMOJI_MAPPING', {})
@@ -72,7 +72,7 @@ class SlackHandler(object):
         return True
 
     def get_emoji(self, author):
-        if not len(self.emojis):
+        if not len(self.happy_emojis):
             return ":heart:"
 
         if self.slack_custom_emoji_mapping.get(author):
@@ -81,6 +81,6 @@ class SlackHandler(object):
         name_index = len(author)
         for character in author:
             name_index = name_index + ord(character)
-        emoji_index = name_index % len(self.emojis)
+        emoji_index = name_index % len(self.happy_emojis)
 
-        return ":{}:".format(self.emojis[emoji_index])
+        return ":{}:".format(self.happy_emojis[emoji_index])

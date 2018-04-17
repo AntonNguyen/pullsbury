@@ -59,10 +59,11 @@ class TestSlackHandler(TestCase):
     def test_get_emoji_returns_correct_custom_emoji(self):
         event = TestableEvent()
         self.config.update({
-            'CUSTOM_EMOJI_MAPPING': {
+            'SLACK_CUSTOM_EMOJI_MAPPING': {
                 'batman': 'joker'
             }
         })
+
         handler = SlackHandler(event, self.config)
         eq_(handler.get_emoji('batman'), ':joker:')
         # non custom emojis return the default response

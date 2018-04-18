@@ -12,6 +12,7 @@ class SlackHandler(object):
         self.slack_icon = config.get('SLACK_ICON')
         self.repo_blacklist = config.get('REPO_BLACKLIST')
         self.slack_custom_emoji_mapping = config.get('SLACK_CUSTOM_EMOJI_MAPPING', {})
+        log.info("Custom emoji mapping:{}".format(self.slack_custom_emoji_mapping))
 
     def parse_teams(self, teams, author):
         channels = []
@@ -51,6 +52,9 @@ class SlackHandler(object):
 
             if not response['ok']:
                 log.error(response)
+                return
+
+            log.info("Slack message posted to #{}".format(channel))
 
     def should_handle(self):
         valid_actions = [
@@ -74,7 +78,6 @@ class SlackHandler(object):
     def get_emoji(self, author):
         if not len(self.happy_emojis):
             return ":heart:"
-
         if self.slack_custom_emoji_mapping.get(author):
             return ":{}:".format(self.slack_custom_emoji_mapping[author])
 
@@ -84,3 +87,4 @@ class SlackHandler(object):
         emoji_index = name_index % len(self.happy_emojis)
 
         return ":{}:".format(self.happy_emojis[emoji_index])
+

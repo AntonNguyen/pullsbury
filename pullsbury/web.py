@@ -33,6 +33,7 @@ def notify():
             for handler in handlers:
                 handler = handler(event, config)
                 handler.send_notifications()
+                log.info("{} event from {} handled".format(processor, event.author))
     except Exception:
         log.exception("Unable to process webhook")
         return Response(status=500)

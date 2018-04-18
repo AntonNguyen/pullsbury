@@ -1,3 +1,5 @@
+import os
+import sys
 import json
 import logging
 import pkg_resources
@@ -10,6 +12,8 @@ from pullsbury.models.event import Event
 config = load_config()
 app = Flask("pullsbury")
 app.config.update(config)
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.INFO)
 
 log = logging.getLogger(__name__)
 version = pkg_resources.get_distribution('pullsbury').version

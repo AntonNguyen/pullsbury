@@ -32,12 +32,13 @@ def notify():
     try:
         event = Event(request)
         processor = u"{}.{}".format(event.type, event.action)
+        log.info("{} event received from {}".format(processor, event.author))
         if processor in EVENT_PROCESSORS:
             handlers = EVENT_PROCESSORS[processor]
             for handler in handlers:
                 handler = handler(event, config)
                 handler.send_notifications()
-                log.info("{} event from {} handled".format(processor, event.author))
+                log.info("{} event handled by {}".format(processor, event.author))
     except Exception:
         log.exception("Unable to process webhook")
         return Response(status=500)

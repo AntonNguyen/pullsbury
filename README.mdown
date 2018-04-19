@@ -15,6 +15,7 @@
 # Pullsbury Gitboy
 
 [![Build Status](https://api.travis-ci.org/AntonNguyen/pullsbury.svg)](https://travis-ci.org/AntonNguyen/pullsbury)
+[![codecov](https://codecov.io/gh/AntonNguyen/pullsbury/branch/master/graph/badge.svg)](https://codecov.io/gh/AntonNguyen/pullsbury)
 
 Pullsbury Gitboy helps teams collaborate more effectively on pull requests.
 It listens to webhooks from github, then it posts a slack notification into

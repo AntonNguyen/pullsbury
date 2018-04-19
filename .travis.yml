@@ -10,7 +10,9 @@ install:
 env:
   - PULLSBURY_SETTINGS="./settings.py"
 
-script: "pipenv run nosetests"
+script: "pipenv run nosetests --with-coverage"
+
+after_success: "pipenv run codecov"
 
 sudo: false
 

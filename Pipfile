@@ -15,6 +15,7 @@ httpretty = "*"
 "pep8" = "*"
 nose = "*"
 mock = "*"
+codecov = "*"
 
 [requires]
 python_version = "2.7"

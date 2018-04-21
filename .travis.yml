@@ -1,18 +1,24 @@
 language: python
 
 python:
- - "2.7"
+ - 2.7
 
 install:
-  - "pip install pipenv"
-  - "pipenv install --two"
+  - pip install pipenv
+  - pipenv install
 
 env:
   - PULLSBURY_SETTINGS="./settings.py"
 
-script: "pipenv run nosetests --with-coverage"
+script:
+  - pipenv install coverage
+  - pipenv run nosetests --with-coverage --cover-xml
+  - pipenv run coverage xml
 
-after_success: "pipenv run codecov"
+after_success:
+  - ls
+  - pipenv install codecov
+  - pipenv run codecov
 
 sudo: false
 

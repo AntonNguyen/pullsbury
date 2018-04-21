@@ -17,6 +17,7 @@ nose = "*"
 mock = "*"
 codecov = "*"
 "flake8" = "*"
+coverage = "*"
 
 [requires]
 python_version = "2.7"

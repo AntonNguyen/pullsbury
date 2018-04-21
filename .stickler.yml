@@ -1,5 +1,6 @@
 linters:
   flake8:
     fixer: true
+    config: './tox.ini'
 fixers:
   enable: true

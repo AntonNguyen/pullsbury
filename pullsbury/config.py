@@ -29,9 +29,8 @@ def load_config(settings_file='./test_settings.py'):
     ]
 
     for value in json_values:
-        if value in config:
-            config.update({
-                value: json.loads(config.get(value, ''))
-            })
+        config.update({
+            value: json.loads(config.get(value, '{}'))
+        })
 
     return config

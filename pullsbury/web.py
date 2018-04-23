@@ -1,6 +1,4 @@
-import os
 import sys
-import json
 import logging
 import pkg_resources
 
@@ -21,6 +19,7 @@ version = pkg_resources.get_distribution('pullsbury').version
 EVENT_PROCESSORS = {
     'pull_request.opened': [SlackHandler]
 }
+
 
 @app.route("/")
 def ping():

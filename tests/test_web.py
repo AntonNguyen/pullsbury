@@ -3,6 +3,9 @@ from mock import patch
 from nose.tools import eq_, ok_
 from pullsbury import web
 from unittest import TestCase
+import logging
+
+logging.disable(logging.CRITICAL)
 
 
 class WebTest(TestCase):

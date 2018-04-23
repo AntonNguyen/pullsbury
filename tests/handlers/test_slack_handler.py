@@ -1,11 +1,12 @@
-from tests import load_fixture
-from mock import patch
 from nose.tools import eq_, ok_
 from pullsbury.handlers.slack_handler import SlackHandler
 from pullsbury.models.event import Event
 from pullsbury.config import load_config
+from tests import load_fixture
 from unittest import TestCase
+from mock import Mock
 import json
+
 
 class TestSlackHandler(TestCase):
     def setUp(self):
@@ -55,20 +56,6 @@ class TestSlackHandler(TestCase):
         })
         handler = SlackHandler(event, self.config)
         eq_(handler.get_emoji('anton'), ':heart:')
-
-    def test_get_emoji_returns_correct_custom_emoji(self):
-        event = TestableEvent()
-        self.config.update({
-            'SLACK_CUSTOM_EMOJI_MAPPING': {
-                'batman': 'joker'
-            }
-        })
-
-        handler = SlackHandler(event, self.config)
-        eq_(handler.get_emoji('batman'), ':joker:')
-        # non custom emojis return the default response
-        eq_(handler.get_emoji('anton'), ':sparkles:')
-        eq_(handler.get_emoji('nguyen'), ':snowman:')
 
     def test_get_emoji_returns_correct_custom_emoji(self):
         event = TestableEvent()
@@ -159,15 +146,48 @@ class TestSlackHandler(TestCase):
             {'name': 'rocket', 'slack': 'meowth'},
         ])
 
-    @patch('pullsbury.handlers.slack_handler.SlackHandler.send_slack_message')
-    def test_send_notifications(self, send_slack_message):
+    def test_send_notifications_is_successful(self):
         event = TestableEvent()
         handler = SlackHandler(event, self.config)
-        handler.send_notifications()
 
-        expected_message = u":snowflake: *A wild PR from @slack-username appeared!* :snowflake:\n_title_: http://api.github.com/repos/dev/emojis/pulls/2964"
-        ok_(send_slack_message.called)
-        send_slack_message.assert_called_with('Channel', expected_message)
+        mock_slack = self.mock_slack_response()
+        handler.slack.api_call = mock_slack
+        sent = handler.send_notifications()
+        eq_(sent, 1)
+
+        ok_(mock_slack.called)
+        mock_slack.assert_called_with(
+            'chat.postMessage',
+            channel='#Channel',
+            icon_url='https://i.imgur.com/oEL0h26.jpg',
+            link_names=True,
+            mrkdwn=True,
+            text=u':snowflake: *A wild PR from @slack-username appeared!* :snowflake:\n_title_: http://api.github.com/repos/dev/emojis/pulls/2964',
+            unfurl_links=True,
+            username='Pullsbury Gitboy')
+
+    def test_send_notifications_when_slack_call_fails(self):
+        event = TestableEvent()
+        handler = SlackHandler(event, self.config)
+
+        mock_slack = self.mock_slack_response(
+            fixture='responses/slack_post_message_failure.json')
+        handler.slack.api_call = mock_slack
+
+        sent = handler.send_notifications()
+        eq_(sent, 0)
+        ok_(mock_slack.called)
+
+    def test_send_notifications_ignores_events_it_should_not_handle(self):
+        event = TestableEvent(action='closed')
+        handler = SlackHandler(event, self.config)
+        sent = handler.send_notifications()
+        eq_(sent, 0)
+
+    def mock_slack_response(self, fixture='responses/slack_post_message_success.json'):
+        mock_slack = Mock()
+        mock_slack.return_value = json.loads(load_fixture(fixture))
+        return mock_slack
 
 
 class TestableEvent(Event):

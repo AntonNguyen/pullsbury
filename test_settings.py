@@ -1,6 +1,7 @@
 import os
 import json
 
+
 def env(key, default, cast=str):
     return cast(os.environ.get(key, default))
 
@@ -35,11 +36,6 @@ GITHUB_PASSWORD = env('GITHUB_PASSWORD', '')
 # uncomment this line. Using a token will take precedence
 # over a username and password.
 GITHUB_OAUTH_TOKEN = env('GITHUB_OAUTH_TOKEN', None)
-
-# Set to a path containing a custom CA bundle.
-# This is useful when you have github:enterprise on an internal
-# network with self-signed certificates.
-SSL_CA_BUNDLE = None
 
 # Slack settings
 SLACK_AUTH_TOKEN = env('SLACK_AUTH_TOKEN', '')

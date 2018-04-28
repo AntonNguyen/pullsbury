@@ -142,8 +142,8 @@ class TestSlackHandler(TestCase):
         }
         channels_to_notify = handler.parse_teams(teams, 'meowth')
         eq_(channels_to_notify, [
-            {'name': 'team-catchem', 'slack': 'meowth'},
             {'name': 'rocket', 'slack': 'meowth'},
+            {'name': 'team-catchem', 'slack': 'meowth'},
         ])
 
     def test_send_notifications_is_successful(self):

@@ -16,7 +16,7 @@ class SlackHandler(object):
     def parse_teams(self, teams, author):
         channels = []
 
-        for team_name, team in teams.iteritems():
+        for team_name, team in teams.items():
             if author in team:
                 channels.append({
                     'name': team_name,

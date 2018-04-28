@@ -23,7 +23,7 @@ a team channel once a PR has been opened.
 
 Pullsbury Gitboy requires:
 
-* Python 2.7
+* Python 3.6
 * A publically addressable hostname/IP that either github or your github:enterprise
 can reach.
 * A github account with read/write access to the repositories you want to watch. This

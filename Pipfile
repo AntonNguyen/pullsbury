@@ -10,14 +10,21 @@ slackclient = "*"
 "e1839a8" = {path = ".", editable = true}
 PyGithub = "*"
 httpretty = "*"
+Flask-MySQL = "*"
+Flask-SQLAlchemy = "*"
+python-mysql = "*"
+mysql-connector-python-rf = "*"
+configparser = "*"
+mysqlclient = "*"
 
 [dev-packages]
 "pep8" = "*"
-nose = "*"
 mock = "*"
 codecov = "*"
 "flake8" = "*"
 coverage = "*"
+nose = "*"
+pylint = "*"
 
 [requires]
 python_version = "3.6"

@@ -1,5 +1,5 @@
 from . import load_fixture
-from mock import patch
+from unittest.mock import patch
 from nose.tools import eq_, ok_
 from pullsbury import web
 from unittest import TestCase

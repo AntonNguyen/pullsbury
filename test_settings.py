@@ -14,8 +14,13 @@ bind = env('PULLSBURY_GUNICORN_BIND', '127.0.0.1:5000')
 debug = env('PULLSBURY_GUNICORN_DEBUG', True, bool)
 loglevel = env('PULLSBURY_GUNICORN_LOGLEVEL', 'debug')
 
+
 # Config file for logging
 LOGGING_CONFIG = './logging.ini'
+
+# SqlAlchemy Settings
+SQLALCHEMY_DATABASE_URI = env('SQLALCHEMY_DATABASE_URI', '')
+SQLALCHEMY_TRACK_MODIFICATIONS = env('SQLALCHEMY_TRACK_MODIFICATIONS', False)
 
 # General project configuration #
 #################################

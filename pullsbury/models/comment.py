@@ -14,9 +14,12 @@ class Comment(db.Model):
     __tablename__ = 'comment'
 
     id = Column(BigInteger, primary_key=True)
+    pull_request_id = Column(BigInteger, ForeignKey('pull_request.id'), nullable=True)
+    type = Column(String(50), nullable=False)
     author = Column(ForeignKey("user.github_username"), nullable=False)
     comment = Column(String(255), nullable=False, server_default='')
-    pull_request_id = Column(BigInteger, ForeignKey('pull_request.id'))
+    path = Column(String(255), nullable=True)
+    line = Column(BigInteger, nullable=True)
     created_at = Column(TIMESTAMP,
                         nullable=False,
                         server_default=text("CURRENT_TIMESTAMP"))

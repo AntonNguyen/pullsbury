@@ -1,17 +1,14 @@
-import sys
 import logging
 import pkg_resources
 
-from flask import Flask, request, Response
+from flask import request, Response
+from pullsbury import create_app
 from pullsbury.config import load_config
 from pullsbury.handlers.slack_handler import SlackHandler
 from pullsbury.models.event import Event
 
 config = load_config()
-app = Flask("pullsbury")
-app.config.update(config)
-app.logger.addHandler(logging.StreamHandler(sys.stdout))
-app.logger.setLevel(logging.INFO)
+app = create_app(config)
 
 log = logging.getLogger(__name__)
 version = pkg_resources.get_distribution('pullsbury').version

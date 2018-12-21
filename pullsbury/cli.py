@@ -1,10 +1,9 @@
 import argparse
 import sys
 
-from flask import url_for
 from pullsbury.config import load_config
 from pullsbury.handlers.github_handler import GithubHandler
-from pullsbury.web import app
+from pullsbury.handlers.slack_handler import SlackHandler
 
 
 def main():
@@ -35,31 +34,19 @@ def unregister_hook(args):
         sys.exit(2)
 
 
-def process_hook(func, args):
-    """
-    Generic helper for processing hook commands.
-    """
-    credentials = None
-    if args.login_user and args.login_pass:
-        credentials = {
-            'GITHUB_USER': args.login_user,
-            'GITHUB_PASSWORD': args.login_pass
-        }
+def send_reminders(args):
+    try:
+        github = GithubHandler(load_config())
+        slack = SlackHandler(load_config())
 
-    with app.app_context():
-        if credentials:
-            credentials['GITHUB_URL'] = app.config['GITHUB_URL']
-            gh = github.get_client(
-                credentials,
-                args.user,
-                args.repo)
-        else:
-            gh = github.get_client(
-                app.config,
-                args.user,
-                args.repo)
-        endpoint = url_for('start_review', _external=True)
-    func(gh, endpoint, args.user, args.repo)
+        ignored_prs = github.get_uncommented_prs()
+        slack.send_reminders(ignored_prs)
+
+        sys.stdout.write('Slack reminders sent\n')
+    except Exception as e:
+        sys.stderr.write('Slack reminders failed to send\n')
+        sys.stderr.write(e.message + '\n')
+        sys.exit(2)
 
 
 def create_parser():
@@ -87,12 +74,19 @@ def create_parser():
     """
     remove = commands.add_parser('unregister', help=desc)
     remove.add_argument('org',
-                          help="The organization the hook will be added to.")
+                        help="The organization the hook will be added to.")
     remove.add_argument('url',
-                          help="The url that pullsbury will be listening on.")
+                        help="The url that pullsbury will be listening on.")
     remove.set_defaults(func=unregister_hook)
 
+    desc = """
+    Send team reminders for unreviewed PRs
+    """
+    remove = commands.add_parser('send_reminders', help=desc)
+    remove.set_defaults(func=send_reminders)
+
     return parser
+
 
 if __name__ == '__main__':
     main()

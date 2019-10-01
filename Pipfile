@@ -6,10 +6,8 @@ name = "pypi"
 [packages]
 Flask = "*"
 gunicorn = "*"
-slackclient = "*"
+slackclient = "<2.0.0"
 "e1839a8" = {path = ".", editable = true}
-PyGithub = "*"
-httpretty = "*"
 
 [dev-packages]
 "pep8" = "*"
@@ -18,6 +16,8 @@ mock = "*"
 codecov = "*"
 "flake8" = "*"
 coverage = "*"
+PyGithub = "*"
+httpretty = "*"
 
 [requires]
 python_version = "3.6"

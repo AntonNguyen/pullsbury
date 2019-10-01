@@ -6,6 +6,7 @@ from unittest import TestCase
 import httpretty
 import github as pygithub
 
+
 class TestGithubHandler(TestCase):
     def test_get_oauth_client(self):
         github = self.get_github_handler({
@@ -14,7 +15,9 @@ class TestGithubHandler(TestCase):
         ok_(isinstance(github.client, pygithub.Github))
 
     def test_get_username_password_client(self):
-        github = self.get_github_handler()
+        github = self.get_github_handler({
+            'GITHUB_OAUTH_TOKEN': None
+        })
         ok_(isinstance(github.client, pygithub.Github))
 
     @httpretty.activate
@@ -99,7 +102,5 @@ class TestGithubHandler(TestCase):
     def get_github_handler(self, custom_config=None):
         config = load_config()
         if custom_config:
-            config.update({
-                'GITHUB_OAUTH_TOKEN': 'oauth-token'
-            })
+            config.update(custom_config)
         return GithubHandler(config)

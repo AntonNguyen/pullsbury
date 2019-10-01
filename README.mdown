@@ -14,7 +14,8 @@
 
 # Pullsbury Gitboy
 
-[![Build Status](https://api.travis-ci.org/AntonNguyen/pullsbury.svg)](https://travis-ci.org/AntonNguyen/pullsbury)
+[![Build Status](https://travis-ci.org/AntonNguyen/pullsbury.svg?branch=master)](https://travis-ci.org/AntonNguyen/pullsbury)
+[![codecov](https://codecov.io/gh/AntonNguyen/pullsbury/branch/master/graph/badge.svg)](https://codecov.io/gh/AntonNguyen/pullsbury)
 
 Pullsbury Gitboy helps teams collaborate more effectively on pull requests.
 It listens to webhooks from github, then it posts a slack notification into
@@ -22,16 +23,14 @@ a team channel once a PR has been opened.
 
 Pullsbury Gitboy requires:
 
-* Python 2.7
-* RabbitMQ (or any other Message broker that is compatible with Celery)
+* Python 3.6
 * A publically addressable hostname/IP that either github or your github:enterprise
 can reach.
 * A github account with read/write access to the repositories you want to watch. This
 account is used fetch additional information about the pull requests it sees.
 
-Pullsbury Gitboy runs as two processes. A web process handles accepting webhooks from github,
-and a celery process handles asking github for more information, and the actual slack calls. You'll also
-need to have rabbitmq-server running.
+Pullsbury Gitboy requires a web process, to handle accepting webhooks from github,
+that makes actual slack calls.
 
 
 ## Installation
@@ -61,17 +60,15 @@ and `GITHUB_PASSWORD` (or `GITHUB_OAUTH_TOKEN`), and `PULLSBURY_SERVER_NAME`.
 
 ## Pullsbury Gitboy Configuration
 
-Pullsbury Gitboy is configured through a settings file. Both the web app and celery process
-share the same configuration file, so configuration is easier to manage and share.
+Pullsbury Gitboy is configured through a settings file.
 
 * Edit the required configuration options, or set the correct environment variables.
+* You can also customize the settings by making your own copy of `test_settings.py`.
 * Set the `PULLSBURY_SETTINGS` environment variable to the path
 of your configuration files. In \*nix system this can be done via:
 ```
 export PULLSBURY_SETTINGS='/path/to/settings.py'
 ```
-* You can skip setting `PULLSBURY_SETTINGS` if you're running Pullsbury Gitboy from
-a directory containing your `settings.py` file.
 
 ## Running Pullsbury Gitboy
 

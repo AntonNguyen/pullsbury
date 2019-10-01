@@ -1,9 +1,9 @@
 import github
 import logging
 
-# log = logging.getLogger(__name__)
-# github_logger = logging.getLogger("github")
-# github_logger.setLevel(logging.INFO)
+log = logging.getLogger(__name__)
+github_logger = logging.getLogger("github")
+github_logger.setLevel(logging.INFO)
 
 
 class GithubHandler(object):
@@ -39,7 +39,7 @@ class GithubHandler(object):
 
         if not hook_id:
             msg = ("Could not find hook for '%s' "
-                "No hooks removed.") % (url)
+                   "No hooks removed.") % (url)
             raise Exception(msg)
 
         try:

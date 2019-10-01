@@ -17,7 +17,7 @@ class SlackHandler(object):
     def parse_teams(self, teams, author):
         channels = []
 
-        for team_name, team in teams.iteritems():
+        for team_name, team in teams.items():
             if author in team:
                 channels.append({
                     'name': team_name,
@@ -33,7 +33,7 @@ class SlackHandler(object):
 
         emoji = self.get_emoji(self.event.author)
         for channel in self.channels_to_notify:
-            message = u"{} *A wild PR from @{} appeared!* {}\n_{}_: {}".format(
+            message = "{} *A wild PR from @{} appeared!* {}\n_{}_: {}".format(
                 emoji, channel['slack'], emoji, self.event.title, self.event.url
             )
             self.send_slack_message(channel['name'], message)

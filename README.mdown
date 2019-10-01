@@ -22,7 +22,7 @@ a team channel once a PR has been opened.
 
 Pullsbury Gitboy requires:
 
-* Python 2.7
+* Python 3.7
 * RabbitMQ (or any other Message broker that is compatible with Celery)
 * A publically addressable hostname/IP that either github or your github:enterprise
 can reach.
@@ -30,8 +30,7 @@ can reach.
 account is used fetch additional information about the pull requests it sees.
 
 Pullsbury Gitboy runs as two processes. A web process handles accepting webhooks from github,
-and a celery process handles asking github for more information, and the actual slack calls. You'll also
-need to have rabbitmq-server running.
+and a celery process handles asking github for more information, and the actual slack calls. You'll also need to have rabbitmq-server running.
 
 
 ## Installation

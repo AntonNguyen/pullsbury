@@ -3,8 +3,6 @@ import json
 import logging.config
 
 from flask.config import Config
-from ConfigParser import ConfigParser
-from StringIO import StringIO
 
 
 def load_config():

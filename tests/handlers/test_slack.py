@@ -1,11 +1,10 @@
-from tests import load_fixture
 from mock import patch
 from nose.tools import eq_, ok_
 from pullsbury.handlers.slack_handler import SlackHandler
 from pullsbury.models.event import Event
 from pullsbury.config import load_config
 from unittest import TestCase
-import json
+
 
 class TestSlackHandler(TestCase):
     def setUp(self):
@@ -155,8 +154,8 @@ class TestSlackHandler(TestCase):
         }
         channels_to_notify = handler.parse_teams(teams, 'meowth')
         eq_(channels_to_notify, [
-            {'name': 'team-catchem', 'slack': 'meowth'},
             {'name': 'rocket', 'slack': 'meowth'},
+            {'name': 'team-catchem', 'slack': 'meowth'}
         ])
 
     @patch('pullsbury.handlers.slack_handler.SlackHandler.send_slack_message')
@@ -165,7 +164,7 @@ class TestSlackHandler(TestCase):
         handler = SlackHandler(event, self.config)
         handler.send_notifications()
 
-        expected_message = u":snowflake: *A wild PR from @slack-username appeared!* :snowflake:\n_title_: http://api.github.com/repos/dev/emojis/pulls/2964"
+        expected_message = ":snowflake: *A wild PR from @slack-username appeared!* :snowflake:\n_title_: http://api.github.com/repos/dev/emojis/pulls/2964"
         ok_(send_slack_message.called)
         send_slack_message.assert_called_with('Channel', expected_message)
 

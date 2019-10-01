@@ -4,6 +4,7 @@ from pullsbury.models.event import Event
 from unittest import TestCase
 import json
 
+
 class TestEvent(TestCase):
     def test_event_parse(self):
         request = MockRequest(

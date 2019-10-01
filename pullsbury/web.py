@@ -22,6 +22,7 @@ EVENT_PROCESSORS = {
     'pull_request.opened': [SlackHandler]
 }
 
+
 @app.route("/")
 def ping():
     return "pullsbury: %s pong\n" % (version,)
@@ -31,7 +32,7 @@ def ping():
 def notify():
     try:
         event = Event(request)
-        processor = u"{}.{}".format(event.type, event.action)
+        processor = "{}.{}".format(event.type, event.action)
         log.info("{} event received from {}".format(processor, event.author))
         if processor in EVENT_PROCESSORS:
             handlers = EVENT_PROCESSORS[processor]

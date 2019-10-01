@@ -38,8 +38,7 @@ class GithubHandler(object):
                 break
 
         if not hook_id:
-            msg = ("Could not find hook for '%s' "
-                "No hooks removed.") % (url)
+            msg = "Could not find hook for '{}' No hooks removed.".format(url)
             raise Exception(msg)
 
         try:

@@ -4,7 +4,7 @@ from pullsbury.models.event import Event
 from pullsbury.config import load_config
 from tests import load_fixture
 from unittest import TestCase
-from mock import Mock
+from mock import Mock, patch
 import json
 
 
@@ -165,6 +165,16 @@ class TestSlackHandler(TestCase):
             text=u':snowflake: *A wild PR from @slack-username appeared!* :snowflake:\n_title_: http://api.github.com/repos/dev/emojis/pulls/2964',
             unfurl_links=True,
             username='Pullsbury Gitboy')
+
+    @patch('pullsbury.handlers.slack_handler.SlackClient')
+    def test_send_notifications_does_nothing_in_silent_mode(self, mock_slack_class):
+        event = TestableEvent()
+        self.config['SLACK_SILENT'] = True
+        handler = SlackHandler(event, self.config)
+
+        mock_slack = mock_slack_class.return_value
+        handler.send_notifications()
+        mock_slack.api_call.assert_not_called()
 
     def test_send_notifications_when_slack_call_fails(self):
         event = TestableEvent()

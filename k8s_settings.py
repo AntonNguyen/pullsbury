@@ -217,6 +217,11 @@ TEAMS = {
             "slack": "Steve Freudenthaler"
         }
     },
+    "dxp-spam": {
+        "jali-clarke": {
+            "slack": "Jinnah Ali-Clarke"
+        }
+    },
     "team-hugs": {
         "mmazer": {
             "slack": "mmazer"

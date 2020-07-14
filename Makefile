@@ -1,6 +1,6 @@
 .PHONY: install dev-install lint test .pipenv-installed
 
-PYTHON=python
+PYTHON?=python
 PIP=$(PYTHON) -m pip
 PIPENV=$(PYTHON) -m pipenv
 NOSETESTS=$(PIPENV) run nosetests

@@ -92,4 +92,3 @@ class SlackHandler(object):
         emoji_index = name_index % len(self.happy_emojis)
 
         return ":{}:".format(self.happy_emojis[emoji_index])
-

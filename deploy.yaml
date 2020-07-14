@@ -33,7 +33,8 @@ spec:
         note_type: tooling-slaves-gke-metadata-enabled
       containers:
       - name: pullsbury-gitboy
-        image: gcr.io/freshbooks-builds/pullsbury-gitboy
+        image: gcr.io/freshbooks-builds/pullsbury-gitboy:latest
+        imagePullPolicy: Always
         env:
         - name: PULLSBURY_SETTINGS
           value: /code/k8s_settings.py

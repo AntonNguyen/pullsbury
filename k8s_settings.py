@@ -33,6 +33,8 @@ SLACK_AUTH_TOKEN = secret_fetcher.fetch_secret(
     'latest'
 )
 
+SLACK_SILENT = env('SLACK_SILENT', False, cast=bool)
+
 SLACK_ICON = 'https://i.imgur.com/oEL0h26.jpg'
 HAPPY_SLACK_EMOJIS = [
     "boom",

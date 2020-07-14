@@ -7,9 +7,6 @@ pipeline {
   agent {
     label "jenkins-python-fbtest"
   }
- parameters {
-    booleanParam(name: 'DEPLOY', defaultValue: false, description: 'Deploy to pullsbury-gitboy Production')
-  }
   environment {
     ARTIFACTORY_CREDENTIALS = credentials('freshbooks-bot-artifactory')
     SLACK_TOKEN = credentials('slack-bot-token')
@@ -114,7 +111,7 @@ pipeline {
     stage('Deploy pullsbury-gitboy'){
       when {
         expression {
-          params.DEPLOY && env.BRANCH_NAME == 'master'
+          (env.BRANCH_NAME == 'master')
         }
       }
       steps {

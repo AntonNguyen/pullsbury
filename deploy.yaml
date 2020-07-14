@@ -34,6 +34,9 @@ spec:
       containers:
       - name: pullsbury-gitboy
         image: gcr.io/freshbooks-builds/pullsbury-gitboy
+        env:
+        - name: PULLSBURY_SETTINGS
+          value: /code/k8s_settings.py
         ports:
         - containerPort: 5000
 ---

@@ -20,6 +20,7 @@ debug = env('PULLSBURY_GUNICORN_DEBUG', True, bool)
 loglevel = env('PULLSBURY_GUNICORN_LOGLEVEL', 'debug')
 workers = env('PULLSBURY_GUNICORN_NUM_WORKERS', 4, int)
 threads = workers
+keepalive = 15
 
 # Config file for logging
 LOGGING_CONFIG = './logging.ini'

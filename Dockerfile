@@ -12,4 +12,4 @@ RUN ARTIFACTORY_CREDENTIALS_USR=${ARTIFACTORY_CREDENTIALS_USR} ARTIFACTORY_CREDE
 ENV PULLSBURY_SETTINGS /code/test_settings.py
 
 ENTRYPOINT ["ash", "-c"]
-CMD ["pipenv run gunicorn -c ${PULLSBURY_SETTINGS} pullsbury.web:app"]
+CMD ["pipenv run gunicorn -c ${PULLSBURY_SETTINGS} pullsbury.web:app --log-file=-"]

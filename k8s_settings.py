@@ -196,7 +196,7 @@ TEAMS = {
             "slack": "cobi"
         }
     },
-    "catalyst": {
+    "shared-services-engineering": {
         "g--": {
             "slack": "goakham"
         },
@@ -214,9 +214,6 @@ TEAMS = {
         },
         "drone115b": {
             "slack": "Mayur"
-        },
-        "sfreudenthaler": {
-            "slack": "Steve Freudenthaler"
         }
     },
     "dxp-spam": {
@@ -224,7 +221,7 @@ TEAMS = {
             "slack": "Jinnah Ali-Clarke"
         }
     },
-    "team-hugs": {
+    "web-platform-engineering": {
         "mmazer": {
             "slack": "mmazer"
         },
@@ -233,6 +230,9 @@ TEAMS = {
         },
         "patrickmariglia": {
             "slack": "Patrick Mariglia"
+        },
+        "drone115b": {
+            "slack": "Mayur"
         }
     },
     "team-sas": {

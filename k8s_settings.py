@@ -18,6 +18,8 @@ def env(key, default, cast=str):
 bind = '0.0.0.0:5000'
 debug = env('PULLSBURY_GUNICORN_DEBUG', True, bool)
 loglevel = env('PULLSBURY_GUNICORN_LOGLEVEL', 'debug')
+workers = env('PULLSBURY_GUNICORN_NUM_WORKERS', 4, int)
+threads = workers
 
 # Config file for logging
 LOGGING_CONFIG = './logging.ini'

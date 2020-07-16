@@ -70,6 +70,10 @@ of your configuration files. In \*nix system this can be done via:
 export PULLSBURY_SETTINGS='/path/to/settings.py'
 ```
 
+### Updating the Team Mapping (and More)
+
+At runtime the `k8s_settings.py` file is used, and the mapping dict itself is `TEAMS`.  There are other configs in there you might want to change too, such as the emoji mapping.  Feel free to edit that file and submit a PR - our CD will automatically redeploy on merge!
+
 ## Running Pullsbury Gitboy
 
 After setting up configuration you'll need to start up both processes:

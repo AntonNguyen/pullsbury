@@ -73,3 +73,8 @@ def test_load_config_repo_blacklist():
 
     ok_(len(actual_repos) > 0)
     eq_(actual_repos, expected_repos)
+
+
+def test_load_config_slack_silent():
+    res = load_config()
+    eq_(res['SLACK_SILENT'], False)

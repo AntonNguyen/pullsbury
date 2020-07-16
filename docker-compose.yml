@@ -1,9 +1,0 @@
-mage:
-  build: .
-web:
-  image: pullsbury_image
-  command: bash -c 'gunicorn -c ${PULLSBURY_SETTINGS} pullsbury.web:app'
-  environment:
-    PULLSBURY_GUNICORN_BIND: '0.0.0.0:5000'
-  ports:
-   - "5000:5000"

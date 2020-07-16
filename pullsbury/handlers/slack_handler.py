@@ -6,7 +6,12 @@ log = logging.getLogger(__name__)
 class SlackHandler(object):
     def __init__(self, event, config):
         self.event = event
-        self.slack = SlackClient(config.get('SLACK_AUTH_TOKEN'))
+
+        if config.get('SLACK_SILENT'):
+            self.slack = NullSlackClient()
+        else:
+            self.slack = SlackClient(config.get('SLACK_AUTH_TOKEN'))
+
         self.channels_to_notify = self.parse_teams(config.get('TEAMS'), event.author)
         self.happy_emojis = config.get('HAPPY_SLACK_EMOJIS')
         self.slack_icon = config.get('SLACK_ICON')
@@ -93,3 +98,11 @@ class SlackHandler(object):
 
         return ":{}:".format(self.happy_emojis[emoji_index])
 
+
+class NullSlackClient(object):
+    def __init__(self):
+        pass
+
+    def api_call(self, *args, **kwargs):
+        log.debug("swallowed api call: args=%s, kwargs=%s", args, kwargs)
+        return {"ok": True}
